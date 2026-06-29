@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About | Nirvana Biotech</title>
+<title>Services | Nirvana Biotech</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -36,41 +36,24 @@
 </nav>
 
 <main>
-  <section class="hero page-fade" id="about-hero-section" style="padding-bottom:3rem;">
+  <section class="hero page-fade" id="services-hero-section" style="padding-bottom:3rem;">
     <div class="shell">
-      <div class="eyebrow hero-eyebrow" id="about-eyebrow">WHO WE ARE</div>
-      <h1 id="about-title">Commercial diagnostics, research-grade foundations</h1>
-      <p class="lede" id="about-intro" style="margin-top:1.5rem;"></p>
+      <div class="eyebrow hero-eyebrow" id="services-eyebrow">WHAT WE OFFER</div>
+      <h1 id="services-title">Services</h1>
+      <p class="lede" id="services-subtitle" style="margin-top:1.5rem;">Lab and procurement support beyond off-the-shelf kits.</p>
       <div class="editable-controls edit-only">
-        <button class="edit-pencil" onclick="promptTextEdit('about.eyebrow','about-eyebrow')">Edit label</button>
-        <button class="edit-pencil" onclick="promptTextEdit('about.title','about-title')">Edit title</button>
-        <button class="edit-pencil" onclick="promptTextEdit('about.intro','about-intro',true)">Edit intro</button>
-        <button class="edit-pencil" onclick="promptImageEdit('about.backgroundUrl')">Change background</button>
+        <button class="edit-pencil" onclick="promptTextEdit('servicesPage.eyebrow','services-eyebrow')">Edit label</button>
+        <button class="edit-pencil" onclick="promptTextEdit('servicesPage.title','services-title')">Edit title</button>
+        <button class="edit-pencil" onclick="promptTextEdit('servicesPage.subtitle','services-subtitle',true)">Edit subtitle</button>
+        <button class="edit-pencil" onclick="promptImageEdit('servicesPage.backgroundUrl')">Change background</button>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="shell">
-      <p class="body-copy" id="about-desc"></p>
-      <div class="editable-controls edit-only">
-        <button class="edit-pencil" onclick="promptTextEdit('about.desc','about-desc',true)">Edit description</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="background:var(--paper-dim);">
-    <div class="shell">
-      <div class="section-head">
-        <div class="eyebrow" id="highlights-eyebrow">Why teams choose us</div>
-        <h2 id="highlights-heading">Built different from a typical distributor</h2>
-        <div class="editable-controls edit-only">
-          <button class="edit-pencil" onclick="promptTextEdit('about.highlightsEyebrow','highlights-eyebrow')">Edit label</button>
-          <button class="edit-pencil" onclick="promptTextEdit('about.highlightsHeading','highlights-heading')">Edit heading</button>
-        </div>
-      </div>
-      <div class="card-grid grid-3" id="highlights-grid"></div>
-      <button class="add-item-btn edit-only" onclick="addArrayItem('highlights')">+ Add highlight</button>
+      <div id="services-list"></div>
+      <button class="add-item-btn edit-only" onclick="addArrayItem('services')">+ Add service</button>
     </div>
   </section>
 </main>
@@ -127,26 +110,26 @@
 <script src="site.js"></script>
 <script>
   function renderPage(data){
-    buildNav('about');
-    const a = data.about;
-    if (!a) return;
-    document.getElementById('about-eyebrow').textContent = (a.eyebrow || 'WHO WE ARE').toUpperCase();
-    document.getElementById('about-title').textContent = a.title || '';
-    document.getElementById('about-intro').textContent = a.intro || '';
-    document.getElementById('about-desc').textContent = a.desc || '';
-    applySectionBackground('about-hero-section', a.backgroundUrl);
-    document.getElementById('highlights-eyebrow').textContent = a.highlightsEyebrow || 'Why teams choose us';
-    document.getElementById('highlights-heading').textContent = a.highlightsHeading || '';
+    buildNav('services');
+    const p = data.servicesPage || {};
+    document.getElementById('services-eyebrow').textContent = (p.eyebrow || 'WHAT WE OFFER').toUpperCase();
+    document.getElementById('services-title').textContent = p.title || 'Services';
+    document.getElementById('services-subtitle').textContent = p.subtitle || '';
+    applySectionBackground('services-hero-section', p.backgroundUrl);
 
-    const grid = document.getElementById('highlights-grid');
-    grid.innerHTML = (a.highlights || []).map((h, i) => `
-      <div class="product-card" style="cursor:default;">
-        <h3>${escapeHtml(h.title)}</h3>
-        <p>${escapeHtml(h.desc)}</p>
-        <div class="editable-controls edit-only">
-          <button class="edit-pencil" onclick="promptTextEdit('about.highlights.${i}.title', null)">Title</button>
-          <button class="edit-pencil" onclick="promptTextEdit('about.highlights.${i}.desc', null, true)">Desc</button>
-          <button class="edit-pencil danger" onclick="removeArrayItem('highlights', ${i})">Remove</button>
+    const list = document.getElementById('services-list');
+    list.innerHTML = (data.services || []).map((svc, idx) => `
+      <div class="service-row">
+        <div class="icon">${escapeHtml(svc.icon || String(idx + 1).padStart(2, '0'))}</div>
+        <div>
+          <h3>${escapeHtml(svc.title)}</h3>
+          <p>${escapeHtml(svc.desc)}</p>
+          <div class="editable-controls edit-only">
+            <button class="edit-pencil" onclick="promptTextEdit('services.${idx}.icon', null)">Icon label</button>
+            <button class="edit-pencil" onclick="promptTextEdit('services.${idx}.title', null)">Title</button>
+            <button class="edit-pencil" onclick="promptTextEdit('services.${idx}.desc', null, true)">Desc</button>
+            <button class="edit-pencil danger" onclick="removeArrayItem('services', ${idx})">Remove</button>
+          </div>
         </div>
       </div>`).join('');
   }

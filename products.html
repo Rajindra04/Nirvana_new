@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About | Nirvana Biotech</title>
+<title>Products | Nirvana Biotech</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -36,41 +36,24 @@
 </nav>
 
 <main>
-  <section class="hero page-fade" id="about-hero-section" style="padding-bottom:3rem;">
+  <section class="hero page-fade" id="products-hero-section" style="padding-bottom:3rem;">
     <div class="shell">
-      <div class="eyebrow hero-eyebrow" id="about-eyebrow">WHO WE ARE</div>
-      <h1 id="about-title">Commercial diagnostics, research-grade foundations</h1>
-      <p class="lede" id="about-intro" style="margin-top:1.5rem;"></p>
+      <div class="eyebrow hero-eyebrow" id="products-eyebrow">CATALOG</div>
+      <h1 id="products-title">Products</h1>
+      <p class="lede" id="products-subtitle" style="margin-top:1.5rem;">Diagnostic kits and reagents, ready to order.</p>
       <div class="editable-controls edit-only">
-        <button class="edit-pencil" onclick="promptTextEdit('about.eyebrow','about-eyebrow')">Edit label</button>
-        <button class="edit-pencil" onclick="promptTextEdit('about.title','about-title')">Edit title</button>
-        <button class="edit-pencil" onclick="promptTextEdit('about.intro','about-intro',true)">Edit intro</button>
-        <button class="edit-pencil" onclick="promptImageEdit('about.backgroundUrl')">Change background</button>
+        <button class="edit-pencil" onclick="promptTextEdit('productsPage.eyebrow','products-eyebrow')">Edit label</button>
+        <button class="edit-pencil" onclick="promptTextEdit('productsPage.title','products-title')">Edit title</button>
+        <button class="edit-pencil" onclick="promptTextEdit('productsPage.subtitle','products-subtitle',true)">Edit subtitle</button>
+        <button class="edit-pencil" onclick="promptImageEdit('productsPage.backgroundUrl')">Change background</button>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="shell">
-      <p class="body-copy" id="about-desc"></p>
-      <div class="editable-controls edit-only">
-        <button class="edit-pencil" onclick="promptTextEdit('about.desc','about-desc',true)">Edit description</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="background:var(--paper-dim);">
-    <div class="shell">
-      <div class="section-head">
-        <div class="eyebrow" id="highlights-eyebrow">Why teams choose us</div>
-        <h2 id="highlights-heading">Built different from a typical distributor</h2>
-        <div class="editable-controls edit-only">
-          <button class="edit-pencil" onclick="promptTextEdit('about.highlightsEyebrow','highlights-eyebrow')">Edit label</button>
-          <button class="edit-pencil" onclick="promptTextEdit('about.highlightsHeading','highlights-heading')">Edit heading</button>
-        </div>
-      </div>
-      <div class="card-grid grid-3" id="highlights-grid"></div>
-      <button class="add-item-btn edit-only" onclick="addArrayItem('highlights')">+ Add highlight</button>
+      <div class="card-grid grid-3" id="products-grid"></div>
+      <button class="add-item-btn edit-only" onclick="addArrayItem('products')">+ Add product</button>
     </div>
   </section>
 </main>
@@ -102,6 +85,21 @@
   </div>
 </footer>
 
+<div class="modal-overlay" id="detail-modal" onclick="if(event.target===this) closeDetail()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeDetail()" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 14 14"><path d="M1 1L13 13M13 1L1 13" stroke="#101820" stroke-width="1.5"/></svg>
+    </button>
+    <img src="" alt="">
+    <div class="modal-body">
+      <div class="modal-tag"></div>
+      <h3></h3>
+      <p></p>
+      <div class="modal-link-wrap" style="margin-top:1.4rem;"></div>
+    </div>
+  </div>
+</div>
+
 <div class="admin-overlay" id="admin-login-modal">
   <div class="admin-box">
     <h3>Admin login</h3>
@@ -127,28 +125,36 @@
 <script src="site.js"></script>
 <script>
   function renderPage(data){
-    buildNav('about');
-    const a = data.about;
-    if (!a) return;
-    document.getElementById('about-eyebrow').textContent = (a.eyebrow || 'WHO WE ARE').toUpperCase();
-    document.getElementById('about-title').textContent = a.title || '';
-    document.getElementById('about-intro').textContent = a.intro || '';
-    document.getElementById('about-desc').textContent = a.desc || '';
-    applySectionBackground('about-hero-section', a.backgroundUrl);
-    document.getElementById('highlights-eyebrow').textContent = a.highlightsEyebrow || 'Why teams choose us';
-    document.getElementById('highlights-heading').textContent = a.highlightsHeading || '';
+    buildNav('products');
+    const p = data.productsPage || {};
+    document.getElementById('products-eyebrow').textContent = (p.eyebrow || 'CATALOG').toUpperCase();
+    document.getElementById('products-title').textContent = p.title || 'Products';
+    document.getElementById('products-subtitle').textContent = p.subtitle || '';
+    applySectionBackground('products-hero-section', p.backgroundUrl);
 
-    const grid = document.getElementById('highlights-grid');
-    grid.innerHTML = (a.highlights || []).map((h, i) => `
-      <div class="product-card" style="cursor:default;">
-        <h3>${escapeHtml(h.title)}</h3>
-        <p>${escapeHtml(h.desc)}</p>
+    const grid = document.getElementById('products-grid');
+    grid.innerHTML = (data.products || []).map((item, idx) => `
+      <div class="product-card editable-wrap" onclick="openDetail('products', ${idx})">
+        ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${escapeHtml(item.name)}" onerror="this.style.display='none'">` : ''}
+        <button class="editable-img-btn edit-only" onclick="event.stopPropagation(); promptImageEdit('products.${idx}.imageUrl')">Change image</button>
+        <span class="sku">${escapeHtml(item.sku || '')}</span>
+        <h3 style="margin-top:0.5rem;">${escapeHtml(item.name)}</h3>
+        <p>${escapeHtml(item.desc)}</p>
+        <div class="spec-strip" style="margin-top:0.9rem; font-size:0.7rem;" data-specs-for="${idx}"></div>
+        <span class="more">View specs &rarr;</span>
         <div class="editable-controls edit-only">
-          <button class="edit-pencil" onclick="promptTextEdit('about.highlights.${i}.title', null)">Title</button>
-          <button class="edit-pencil" onclick="promptTextEdit('about.highlights.${i}.desc', null, true)">Desc</button>
-          <button class="edit-pencil danger" onclick="removeArrayItem('highlights', ${i})">Remove</button>
+          <button class="edit-pencil" onclick="event.stopPropagation(); promptTextEdit('products.${idx}.name', null)">Name</button>
+          <button class="edit-pencil" onclick="event.stopPropagation(); promptTextEdit('products.${idx}.sku', null)">SKU</button>
+          <button class="edit-pencil" onclick="event.stopPropagation(); promptTextEdit('products.${idx}.desc', null, true)">Desc</button>
+          <button class="edit-pencil" onclick="event.stopPropagation(); promptDetailEdit('products', ${idx})">Full details</button>
+          <button class="edit-pencil danger" onclick="event.stopPropagation(); removeArrayItem('products', ${idx})">Remove</button>
         </div>
       </div>`).join('');
+
+    // Spec strips render after innerHTML is in the DOM, since they need their own element refs.
+    (data.products || []).forEach((item, idx) => {
+      renderSpecStrip(document.querySelector(`[data-specs-for="${idx}"]`), item.specs || []);
+    });
   }
 </script>
 </body>

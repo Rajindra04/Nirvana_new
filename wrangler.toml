@@ -1,0 +1,22 @@
+name = "nirvana-commercial-admin"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Non-secret configuration — edit these to match YOUR commercial-site repo/domain.
+# This must be a SEPARATE Worker from the research site's "nirvana-biotech-admin" —
+# do not reuse that Worker's name or point it at the same GitHub repo.
+[vars]
+GITHUB_OWNER = "Rajindra04"
+GITHUB_REPO = "Nirvana_new"
+GITHUB_BRANCH = "main"
+ALLOWED_ORIGIN = "https://www.nirvanabiotech.com.np"
+
+# Secrets (DO NOT put real values here — set them with:
+#   wrangler secret put ADMIN_PASSWORD
+#   wrangler secret put GITHUB_TOKEN
+#   wrangler secret put SESSION_SECRET
+# They will NOT appear in this file or in git.
+#
+# IMPORTANT: use a DIFFERENT ADMIN_PASSWORD and a DIFFERENT GITHUB_TOKEN from the
+# research site's Worker. If this site's admin password leaks, you don't want it
+# to also unlock write access to the research site's repo.
