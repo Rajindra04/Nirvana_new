@@ -2,82 +2,81 @@
   "brandName": "NIRVANA",
   "brandSub": "BIOTECH",
   "logoUrl": "images/logo.png",
-
   "home": {
     "tagline": "Diagnostics, Delivered",
     "title": "Rapid diagnostics built for the field",
     "subtitle": "Commercial-grade test kits and laboratory services, engineered from our own research and validated for clinical and field use.",
     "backgroundUrl": "",
-    "flagshipEyebrow": "Flagship product",
-    "flagshipName": "Dengue NS1 Rapid Test Kit",
-    "flagshipDesc": "Lateral-flow detection of Dengue NS1 antigen with results in 15 minutes. Built on our own VLP-validated antibody platform.",
+    "flagshipEyebrow": "Product under development",
+    "flagshipName": "Dengue Neutralizing antibody detection Test Kit",
+    "flagshipDesc": "Lateral-flow detection of Dengue antibody with results in 15 minutes. Built on our own VLP-validated antibody platform.",
     "flagshipSpecs": [
-      { "label": "SENS", "value": "98.2%" },
-      { "label": "SPEC", "value": "99.1%" },
-      { "label": "READ TIME", "value": "15 MIN" },
-      { "label": "SHELF LIFE", "value": "18 MO" }
+      {
+        "label": "SENS",
+        "value": "98.2%"
+      },
+      {
+        "label": "SPEC",
+        "value": "99.1%"
+      },
+      {
+        "label": "READ TIME",
+        "value": "15 MIN"
+      },
+      {
+        "label": "SHELF LIFE",
+        "value": "18 MO"
+      }
     ],
     "flagshipImageUrl": ""
   },
-
   "about": {
     "eyebrow": "Who we are",
     "title": "Commercial diagnostics, research-grade foundations",
     "intro": "Nirvana Biotech's commercial division brings our research division's validated platforms to clinics, labs, and distributors as ready-to-use products.",
-    "desc": "Every kit we sell traces back to a published or in-progress research platform \u2014 we don't sell anything we haven't validated ourselves first.",
+    "desc": "Every kit we sell traces back to a published or in-progress research platform — we don't sell anything we haven't validated ourselves first.",
     "backgroundUrl": "",
     "highlightsEyebrow": "Why teams choose us",
     "highlightsHeading": "Built different from a typical distributor",
     "highlights": [
-      { "title": "Research-Backed", "desc": "Every product is built on a platform our own research team developed and validated, not licensed or rebranded from elsewhere." },
-      { "title": "Field-Tested", "desc": "Kits are validated in real clinical and field conditions before commercial release, not just bench-tested." },
-      { "title": "Direct Support", "desc": "Procurement and technical questions go straight to the team that built the product, not a call center." }
+      {
+        "title": "Research-Backed",
+        "desc": "Every product is built on a platform our own research team developed and validated, not licensed or rebranded from elsewhere."
+      },
+      {
+        "title": "Field-Tested",
+        "desc": "Kits are validated in real clinical and field conditions before commercial release, not just bench-tested."
+      },
+      {
+        "title": "Direct Support",
+        "desc": "Procurement and technical questions go straight to the team that built the product, not a call center."
+      }
     ]
   },
-
   "productsPage": {
     "eyebrow": "Catalog",
     "title": "Products",
     "subtitle": "Diagnostic kits and reagents, ready to order.",
     "backgroundUrl": ""
   },
-
   "products": [
     {
-      "name": "Dengue NS1 Rapid Test Kit",
-      "sku": "NB-DNG-001",
-      "desc": "Lateral-flow antigen test for early-stage Dengue detection, 15-minute read time.",
-      "specs": [
-        { "label": "SENS", "value": "98.2%" },
-        { "label": "SPEC", "value": "99.1%" },
-        { "label": "READ TIME", "value": "15 MIN" }
-      ],
-      "imageUrl": "",
-      "fullText": "",
-      "linkUrl": "",
-      "linkLabel": ""
-    },
-    {
-      "name": "Dengue IgG/IgM Combo Kit",
+      "name": "Coming soon",
       "sku": "NB-DNG-002",
       "desc": "Differentiates primary vs. secondary Dengue infection via combined antibody detection.",
       "specs": [
-        { "label": "SENS", "value": "96.5%" },
-        { "label": "SPEC", "value": "98.0%" },
-        { "label": "READ TIME", "value": "20 MIN" }
-      ],
-      "imageUrl": "",
-      "fullText": "",
-      "linkUrl": "",
-      "linkLabel": ""
-    },
-    {
-      "name": "Aptamer-Based Screening Reagent",
-      "sku": "NB-APT-010",
-      "desc": "High-affinity aptamer reagent kit for custom diagnostic assay development.",
-      "specs": [
-        { "label": "FORMAT", "value": "LIQUID" },
-        { "label": "SHELF LIFE", "value": "12 MO" }
+        {
+          "label": "SENS",
+          "value": "96.5%"
+        },
+        {
+          "label": "SPEC",
+          "value": "98.0%"
+        },
+        {
+          "label": "READ TIME",
+          "value": "20 MIN"
+        }
       ],
       "imageUrl": "",
       "fullText": "",
@@ -85,25 +84,33 @@
       "linkLabel": ""
     }
   ],
-
   "servicesPage": {
     "eyebrow": "What we offer",
     "title": "Services",
     "subtitle": "Lab and procurement support beyond off-the-shelf kits.",
     "backgroundUrl": ""
   },
-
   "services": [
-    { "title": "Custom Assay Development", "icon": "01", "desc": "Tailored diagnostic assay design for specific pathogens or sample types, built on our aptamer and VLP platforms." },
-    { "title": "Bulk & Distributor Supply", "icon": "02", "desc": "Volume pricing and logistics support for clinics, labs, and regional distributors." },
-    { "title": "Validation & QC Support", "icon": "03", "desc": "Lab validation services to confirm kit performance under your specific operating conditions." }
+    {
+      "title": "Custom Assay Development",
+      "icon": "01",
+      "desc": "Tailored diagnostic assay design for specific pathogens or sample types, built on our aptamer and VLP platforms."
+    },
+    {
+      "title": "Bulk & Distributor Supply",
+      "icon": "02",
+      "desc": "Volume pricing and logistics support for clinics, labs, and regional distributors."
+    },
+    {
+      "title": "Validation & QC Support",
+      "icon": "03",
+      "desc": "Lab validation services to confirm kit performance under your specific operating conditions."
+    }
   ],
-
   "contactPage": {
     "eyebrow": "Get in touch",
     "backgroundUrl": ""
   },
-
   "contact": {
     "title": "Order or ask a question",
     "desc": "For orders, bulk pricing, or technical questions, reach our commercial team directly.",
